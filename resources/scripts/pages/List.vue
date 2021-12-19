@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import ProductService from "../services/ProductService";
+import ProductService from "@scripts/services/ProductService";
 
 export default {
     name: "products",

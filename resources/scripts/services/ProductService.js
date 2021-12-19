@@ -1,4 +1,4 @@
-import ProductApi from "../api/ProductApi";
+import ProductApi from "@scripts/api/ProductApi";
 
 export default {
     async getProducts() {

@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const webpack = require('./webpack.config.js');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,9 +15,16 @@ const mix = require('laravel-mix');
 // mix.js('resources/scripts/app.js', 'public/js')
 //     .postCss('resources/css/app.css', 'public/css', [
 //         //
-//     ]);
+//     ]).vue();
 
-mix.js('resources/scripts/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]).vue();
+mix
+    .js('./resources/scripts/app.js', './public/js')
+    .sass('./resources/styles/app.scss', './public/css')
+    .options({
+        processCssUrls: false,
+    })
+    .copyDirectory('./resources/assets', './public/assets')
+    .sourceMaps()
+    .webpackConfig(Object.assign(webpack))
+    .version()
+    .vue({ extractStyles: true });

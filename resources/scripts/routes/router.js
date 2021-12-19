@@ -1,7 +1,7 @@
-import Layout from "../layouts/App.vue";
-import ProductList from "../pages/List.vue";
-import ProductCreate from "../pages/Add.vue";
-import ProductEdit from "../pages/Edit.vue";
+import Layout from "@scripts/layouts/App.vue";
+import ProductList from "@scripts/pages/List.vue";
+import ProductCreate from "@scripts/pages/Add.vue";
+import ProductEdit from "@scripts/pages/Edit.vue";
 
 export const routes = [
     {
