@@ -2091,9 +2091,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -2118,6 +2115,20 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2259,6 +2270,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "update-product",
@@ -2268,8 +2293,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       product: {
         title: "",
         price: '',
-        description: "",
-        _method: "put"
+        description: ""
       }
     };
   },
@@ -2357,6 +2381,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2607,32 +2643,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var _layouts_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layouts/App.vue */ "./resources/scripts/layouts/App.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.esm.min.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/index */ "./resources/scripts/routes/index.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes/index */ "./resources/scripts/routes/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/scripts/bootstrap.js");
 
 
-window.Vue = vue__WEBPACK_IMPORTED_MODULE_0__["default"];
 
 
-
-
-
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_2__["default"], (axios__WEBPACK_IMPORTED_MODULE_3___default()));
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
-  routes: _routes_index__WEBPACK_IMPORTED_MODULE_4__.routes
+  routes: _routes_index__WEBPACK_IMPORTED_MODULE_0__.routes
 });
-var app = new Vue({
+var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
   el: '#app',
-  router: router // render: h => h(App),
-
+  router: router
 });
 
 /***/ }),
@@ -21017,22 +21043,6 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/vue-axios/dist/vue-axios.esm.min.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/vue-axios/dist/vue-axios.esm.min.js ***!
-  \**********************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ plugin)
-/* harmony export */ });
-/* module decorator */ module = __webpack_require__.hmd(module);
-function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function plugin(e,n){if(!plugin.installed){var o=isAxiosLike(n)?migrateToMultipleInstances(n):n;if(isValidConfig(o)){plugin.installed=!0;var i=getVueVersion(e);if(i){var t=i<3?registerOnVue2:registerOnVue3;Object.keys(o).forEach((function(n){t(e,n,o[n])}))}else console.error("[vue-axios] unknown Vue version")}else console.error("[vue-axios] configuration is invalid, expected options are either <axios_instance> or { <registration_key>: <axios_instance> }")}}function registerOnVue2(e,n,o){Object.defineProperty(e.prototype,n,{get:function(){return o}}),e[n]=o}function registerOnVue3(e,n,o){e.config.globalProperties[n]=o,e[n]=o}function isAxiosLike(e){return e&&"function"==typeof e.get&&"function"==typeof e.post}function migrateToMultipleInstances(e){return{axios:e,$http:e}}function isValidConfig(e){return"object"===_typeof(e)&&Object.keys(e).every((function(n){return isAxiosLike(e[n])}))}function getVueVersion(e){return e&&e.version&&Number(e.version.split(".")[0])}"object"==("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports=plugin:"function"==typeof define&&__webpack_require__.amdO?define([],(function(){return plugin})):window.Vue&&window.axios&&window.Vue.use&&Vue.use(plugin,window.axios);
-
-/***/ }),
-
 /***/ "./resources/scripts/layouts/App.vue":
 /*!*******************************************!*\
   !*** ./resources/scripts/layouts/App.vue ***!
@@ -21346,26 +21356,8 @@ var render = function () {
           _c(
             "router-link",
             { staticClass: "navbar-brand", attrs: { to: "/", href: "#" } },
-            [_vm._v("Vue Laravel")]
+            [_vm._v("\n                Vue Laravel\n            ")]
           ),
-          _vm._v(" "),
-          _c("div", { staticClass: "collapse navbar-collapse" }, [
-            _c(
-              "div",
-              { staticClass: "navbar-nav" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-item nav-link",
-                    attrs: { "exact-active-class": "active", to: "/" },
-                  },
-                  [_vm._v("Product List")]
-                ),
-              ],
-              1
-            ),
-          ]),
         ],
         1
       ),
@@ -21529,7 +21521,11 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Save")]
+        [
+          _vm._v(
+            "\n                                Save\n                            "
+          ),
+        ]
       ),
     ])
   },
@@ -21688,7 +21684,11 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Update")]
+        [
+          _vm._v(
+            "\n                                Update\n                            "
+          ),
+        ]
       ),
     ])
   },
@@ -21726,7 +21726,7 @@ var render = function () {
             staticClass: "btn btn-primary",
             attrs: { to: { name: "productAdd" } },
           },
-          [_vm._v("Create")]
+          [_vm._v("\n            Create\n        ")]
         ),
       ],
       1
@@ -21766,7 +21766,11 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("Edit")]
+                            [
+                              _vm._v(
+                                "\n                                        Edit\n                                    "
+                              ),
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -21780,7 +21784,11 @@ var render = function () {
                                 },
                               },
                             },
-                            [_vm._v("Delete")]
+                            [
+                              _vm._v(
+                                "\n                                        Delete\n                                    "
+                              ),
+                            ]
                           ),
                         ]),
                       ])
@@ -21828,7 +21836,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("tr", [
       _c("td", { attrs: { colspan: "4", align: "center" } }, [
-        _vm._v("No Products Found."),
+        _vm._v("No Product Found"),
       ]),
     ])
   },
@@ -37207,11 +37215,6 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/amd options */
-/******/ 	(() => {
-/******/ 		__webpack_require__.amdO = {};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
 /******/ 		var deferred = [];
@@ -37278,21 +37281,6 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 				if (typeof window === 'object') return window;
 /******/ 			}
 /******/ 		})();
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/harmony module decorator */
-/******/ 	(() => {
-/******/ 		__webpack_require__.hmd = (module) => {
-/******/ 			module = Object.create(module);
-/******/ 			if (!module.children) module.children = [];
-/******/ 			Object.defineProperty(module, 'exports', {
-/******/ 				enumerable: true,
-/******/ 				set: () => {
-/******/ 					throw new Error('ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: ' + module.id);
-/******/ 				}
-/******/ 			});
-/******/ 			return module;
-/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */

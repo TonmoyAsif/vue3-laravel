@@ -1,7 +1,9 @@
 <template>
     <div class="row">
         <div class="col-12 mb-2 text-end">
-            <router-link :to='{name:"productAdd"}' class="btn btn-primary">Create</router-link>
+            <router-link :to='{name:"productAdd"}' class="btn btn-primary">
+                Create
+            </router-link>
         </div>
         <div class="col-12">
             <div class="card">
@@ -27,14 +29,24 @@
                                     <td>{{ product.price }}</td>
                                     <td>{{ product.description }}</td>
                                     <td>
-                                        <button type="button" @click="editProduct(product.id)" class="btn btn-success">Edit</button>
-                                        <button type="button" @click="deleteProduct(product.id)" class="btn btn-danger">Delete</button>
+                                        <button
+                                            type="button" class="btn btn-success"
+                                            @click="editProduct(product.id)"
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            type="button" class="btn btn-danger"
+                                            @click="deleteProduct(product.id)"
+                                        >
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="4" align="center">No Products Found.</td>
+                                    <td colspan="4" align="center">No Product Found</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -60,9 +72,9 @@ export default {
     },
     methods:{
         async getProducts(){
-            await ProductService.getProducts().then(response=>{
+            await ProductService.getProducts().then( response => {
                 this.products = response
-            }).catch(error=>{
+            }).catch( error => {
                 console.log(error)
             })
         },
@@ -71,9 +83,9 @@ export default {
         },
         async  deleteProduct(productId){
             if(confirm("Are you sure to delete this product ?")){
-                await ProductService.deleteProduct(productId).then(response=>{
+                await ProductService.deleteProduct(productId).then( response => {
                     this.getProducts()
-                }).catch(error=>{
+                }).catch( error => {
                     console.log(error)
                 })
             }

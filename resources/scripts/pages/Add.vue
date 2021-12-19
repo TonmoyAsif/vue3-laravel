@@ -11,23 +11,37 @@
                             <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input type="text" class="form-control" v-model="product.title">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="product.title"
+                                    >
                                 </div>
                             </div>
                             <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input type="text" class="form-control" v-model="product.price">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="product.price"
+                                    >
                                 </div>
                             </div>
                             <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <input type="text" class="form-control" v-model="product.description">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="product.description"
+                                    >
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary">
+                                    Save
+                                </button>
                             </div>
                         </div>                        
                     </form>
@@ -52,9 +66,10 @@ export default {
     },
     methods:{
         async create(){
-            await ProductService.addProduct(this.product).then(response=>{
-                this.$router.push({name:"productList"})
-            }).catch(error=>{
+            await ProductService.addProduct(this.product)
+            .then( response => {
+                this.$router.push({ name:"productList" })
+            }).catch( error => {
                 console.log(error)
             })
         }

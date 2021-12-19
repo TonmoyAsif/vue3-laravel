@@ -1,7 +1,6 @@
 import ProductApi from "../api/ProductApi";
 
 export default {
-    
     async getProducts() {
         return await ProductApi.getProducts();
     },
