@@ -6,45 +6,11 @@
                     <h4>Add Product</h4>
                 </div>
                 <div class="card-body">
-                    <form @submit.prevent="create">
-                        <div class="row">
-                            <div class="col-12 mb-2">
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="product.title"
-                                    >
-                                </div>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="product.price"
-                                    >
-                                </div>
-                            </div>
-                            <div class="col-12 mb-2">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="product.description"
-                                    >
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary">
-                                    Save
-                                </button>
-                            </div>
-                        </div>                        
-                    </form>
+                    <product-fields
+                        type="save"
+                        :product="product"
+                        @onSave="onCreate"
+                    />
                 </div>
             </div>
         </div>
@@ -53,26 +19,29 @@
 
 <script>
 import ProductService from "@scripts/services/ProductService";
+import Product from "@scripts/models/Product";
+import ProductFields from "@scripts/components/ProductFields";
+
 export default {
-    name:"add-product",
-    data(){
-        return {
-            product:{
-                title:"",
-                price:"",
-                description:""
-            }
-        }
+    name: "Add",
+    components: {
+        ProductFields,
     },
-    methods:{
-        async create(){
+    data() {
+        return {
+            product: new Product(),
+        };
+    },
+    methods: {
+        async onCreate() {
             await ProductService.addProduct(this.product)
-            .then( response => {
-                this.$router.push({ name:"productList" })
-            }).catch( error => {
-                console.log(error)
-            })
-        }
-    }
-}
+                .then((response) => {
+                    this.$router.push({ name: "productList" });
+                })
+                .catch((error) => {
+                    console.log("error", error);
+                });
+        },
+    },
+};
 </script>

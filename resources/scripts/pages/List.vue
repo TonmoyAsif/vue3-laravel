@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-12 mb-2 text-end">
-            <router-link :to='{name:"productAdd"}' class="btn btn-primary">
+            <router-link :to="{ name: 'productAdd' }" class="btn btn-primary">
                 Create
             </router-link>
         </div>
@@ -23,21 +23,26 @@
                                 </tr>
                             </thead>
                             <tbody v-if="products.length > 0">
-                                <tr v-for="(product,key) in products" :key="key">
+                                <tr
+                                    v-for="(product, key) in products"
+                                    :key="key"
+                                >
                                     <td>{{ product.id }}</td>
                                     <td>{{ product.title }}</td>
                                     <td>{{ product.price }}</td>
                                     <td>{{ product.description }}</td>
                                     <td>
                                         <button
-                                            type="button" class="btn btn-success"
-                                            @click="editProduct(product.id)"
+                                            type="button"
+                                            class="btn btn-success"
+                                            @click="onEditClicked(product.id)"
                                         >
                                             Edit
                                         </button>
                                         <button
-                                            type="button" class="btn btn-danger"
-                                            @click="deleteProduct(product.id)"
+                                            type="button"
+                                            class="btn btn-danger"
+                                            @click="onDeleteClicked(product.id)"
                                         >
                                             Delete
                                         </button>
@@ -46,7 +51,9 @@
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="4" align="center">No Product Found</td>
+                                    <td colspan="4" align="center">
+                                        No Product Found
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -61,35 +68,42 @@
 import ProductService from "@scripts/services/ProductService";
 
 export default {
-    name: "products",
-    data(){
+    name: "List",
+    data() {
         return {
-            products:[]
-        }
+            products: [],
+        };
     },
-    mounted(){
-        this.getProducts()
+    mounted() {
+        this.getProducts();
     },
-    methods:{
-        async getProducts(){
-            await ProductService.getProducts().then( response => {
-                this.products = response
-            }).catch( error => {
-                console.log(error)
-            })
-        },
-        editProduct(productId) {
-            this.$router.push({ name: 'productEdit', params: { productId: productId } })
-        },
-        async  deleteProduct(productId){
-            if(confirm("Are you sure to delete this product ?")){
-                await ProductService.deleteProduct(productId).then( response => {
-                    this.getProducts()
-                }).catch( error => {
-                    console.log(error)
+    methods: {
+        async getProducts() {
+            await ProductService.getProductList()
+                .then((response) => {
+                    this.products = response;
                 })
+                .catch((error) => {
+                    console.log("error", error);
+                });
+        },
+        onEditClicked(productId) {
+            this.$router.push({
+                name: "productEdit",
+                params: { productId: productId },
+            });
+        },
+        async onDeleteClicked(productId) {
+            if (confirm("Are you sure to delete this product ?")) {
+                await ProductService.deleteProduct(productId)
+                    .then((response) => {
+                        this.getProducts();
+                    })
+                    .catch((error) => {
+                        console.log("error", error);
+                    });
             }
-        }
-    }
-}
+        },
+    },
+};
 </script>

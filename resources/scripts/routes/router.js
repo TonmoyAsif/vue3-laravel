@@ -9,21 +9,21 @@ export const routes = [
         component: Layout,
         children: [
             {
-                name: 'productList',
-                path: '/',
-                component: ProductList
+                path: "/",
+                name: "productList",
+                component: ProductList,
             },
             {
-                name: 'productEdit',
-                path: '/product/:productId/edit',
+                path: "/product/:productId/edit",
+                name: "productEdit",
                 props: true,
-                component: ProductEdit
+                component: ProductEdit,
             },
             {
-                name: 'productAdd',
-                path: '/product/add',
-                component: ProductCreate
-            }
-        ]
-    }
-]
+                path: "/product/add",
+                name: "productAdd",
+                component: ProductCreate,
+            },
+        ],
+    },
+];

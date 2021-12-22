@@ -1,23 +1,57 @@
 import axios from "axios";
+import ProductMapper from "@scripts/api/mappers/ProductMapper";
 
 export default {
-    async getProducts() {
-        return (await axios.get(`/api/product`)).data;
+    getProductList: async () => {
+        try {
+            const data = await axios.get(`/api/product`);
+            return ProductMapper.mapProductList(data.data);
+        } catch (error) {
+            console.log("error", error);
+            return error.data;
+        }
     },
 
-    async getProductById(productId) {
-        return (await axios.get(`/api/product/${productId}`)).data;
+    getProductById: async (productId) => {
+        try {
+            const data = await axios.get(`/api/product/${productId}`);
+            return ProductMapper.mapProduct(data.data);
+        } catch (error) {
+            console.log("error", error);
+            return error.data;
+        }
     },
 
-    async addProduct(product){
-        return await axios.post(`/api/product`, product)
+    addProduct: async (product) => {
+        try {
+            product = ProductMapper.mapProductToServer(product);
+            const data = await axios.post(`/api/product`, { ...product });
+            return ProductMapper.mapProduct(data.data.product);
+        } catch (error) {
+            console.log("error", error);
+            return error.data;
+        }
     },
 
-    async editProduct(productId, product) {
-        return axios.put(`/api/product/${productId}`, product)
+    editProduct: async (productId, product) => {
+        try {
+            product = ProductMapper.mapProductToServer(product);
+            const data = await axios.put(`/api/product/${productId}`, {
+                ...product,
+            });
+            return ProductMapper.mapProduct(data.data.product);
+        } catch (error) {
+            console.log("error", error);
+            return error.data;
+        }
     },
 
-    async deleteProduct(productId) {
-        return axios.delete(`/api/product/${productId}`)
-    }
-}
+    deleteProduct: async (productId) => {
+        try {
+            return axios.delete(`/api/product/${productId}`);
+        } catch (error) {
+            console.log("error", error);
+            return error.data;
+        }
+    },
+};
