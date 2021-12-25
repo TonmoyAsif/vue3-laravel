@@ -3,47 +3,59 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return JsonResponse
+     * @return AnonymousResourceCollection|JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(): AnonymousResourceCollection | JsonResponse
     {
-        $products = Product::all();
-        return response()->json($products);
+        try {
+            $products = Product::all();
+            return response()->json($products);
+        } catch ( \Exception $exception) {
+            return $this->sendErrorResponse($exception);
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return AnonymousResourceCollection|JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(Request $request): AnonymousResourceCollection | JsonResponse
     {
-        $product = Product::create($request->post());
-        return response()->json([
-            'message'=>'Product Created Successfully!!',
-            'product'=>$product
-        ]);
+        try {
+            $product = Product::create($request->post());
+            return response()->json([
+                'message'=>'Product Created Successfully!!',
+                'product'=>$product
+            ]);
+        } catch ( \Exception $exception) {
+            return $this->sendErrorResponse($exception);
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param Product $product
-     * @return JsonResponse
+     * @return AnonymousResourceCollection|JsonResponse
      */
-    public function show(Product $product): JsonResponse
+    public function show(Product $product): AnonymousResourceCollection | JsonResponse
     {
-        return response()->json($product);
+        try {
+            return response()->json($product);
+        } catch ( \Exception $exception) {
+            return $this->sendErrorResponse($exception);
+        }
     }
 
     /**
@@ -51,28 +63,36 @@ class ProductController extends Controller
      *
      * @param Request $request
      * @param Product $product
-     * @return JsonResponse
+     * @return AnonymousResourceCollection|JsonResponse
      */
-    public function update(Request $request, Product $product): JsonResponse
+    public function update(Request $request, Product $product): AnonymousResourceCollection | JsonResponse
     {
-        $product->fill($request->post())->save();
-        return response()->json([
-            'message'=>'Product Updated Successfully!!',
-            'product'=>$product
-        ]);
+        try {
+            $product->fill($request->post())->save();
+            return response()->json([
+                'message'=>'Product Updated Successfully!!',
+                'product'=>$product
+            ]);
+        } catch ( \Exception $exception) {
+            return $this->sendErrorResponse($exception);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Product $product
-     * @return JsonResponse
+     * @return AnonymousResourceCollection|JsonResponse
      */
-    public function destroy(Product $product): JsonResponse
+    public function destroy(Product $product): AnonymousResourceCollection | JsonResponse
     {
-        $product->delete();
-        return response()->json([
-            'message'=>'Product Deleted Successfully!!'
-        ]);
+        try {
+            $product->delete();
+            return response()->json([
+                'message'=>'Product Deleted Successfully!!'
+            ]);
+        } catch ( \Exception $exception) {
+            return $this->sendErrorResponse($exception);
+        }
     }
 }
