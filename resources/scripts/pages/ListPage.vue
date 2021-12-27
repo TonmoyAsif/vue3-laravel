@@ -68,7 +68,7 @@
 import ProductService from "@scripts/services/ProductService";
 
 export default {
-    name: "List",
+    name: "ListPage",
     data() {
         return {
             products: [],

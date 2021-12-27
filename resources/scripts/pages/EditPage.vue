@@ -23,7 +23,7 @@ import Product from "@scripts/models/Product";
 import ProductFields from "@scripts/components/ProductFields";
 
 export default {
-    name: "update-product",
+    name: "EditPage",
     props: ["productId"],
     components: {
         ProductFields,

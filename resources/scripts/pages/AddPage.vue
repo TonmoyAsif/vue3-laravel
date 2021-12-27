@@ -23,7 +23,7 @@ import Product from "@scripts/models/Product";
 import ProductFields from "@scripts/components/ProductFields";
 
 export default {
-    name: "Add",
+    name: "AddPage",
     components: {
         ProductFields,
     },

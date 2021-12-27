@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\JsonResponse;
+use App\Http\Resources\ProductResource;
+use App\Services\ProductService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductController extends Controller
@@ -17,27 +19,8 @@ class ProductController extends Controller
     public function index(): AnonymousResourceCollection | JsonResponse
     {
         try {
-            $products = Product::all();
-            return response()->json($products);
-        } catch ( \Exception $exception) {
-            return $this->sendErrorResponse($exception);
-        }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return AnonymousResourceCollection|JsonResponse
-     */
-    public function store(Request $request): AnonymousResourceCollection | JsonResponse
-    {
-        try {
-            $product = Product::create($request->post());
-            return response()->json([
-                'message'=>'Product Created Successfully!!',
-                'product'=>$product
-            ]);
+            $service = new ProductService();
+            return ProductResource::collection($service->getProducts());
         } catch ( \Exception $exception) {
             return $this->sendErrorResponse($exception);
         }
@@ -46,13 +29,30 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Product $product
-     * @return AnonymousResourceCollection|JsonResponse
+     * @param int $productId
+     * @return ProductResource|JsonResponse
      */
-    public function show(Product $product): AnonymousResourceCollection | JsonResponse
+    public function show(int $productId): ProductResource | JsonResponse
     {
         try {
-            return response()->json($product);
+            $service = new ProductService();
+            return ProductResource::make($service->getSingleProduct($productId));
+        } catch ( \Exception $exception) {
+            return $this->sendErrorResponse($exception);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param CreateProductRequest $request
+     * @return ProductResource|JsonResponse
+     */
+    public function store(CreateProductRequest $request): ProductResource | JsonResponse
+    {
+        try {
+            $service = new ProductService();
+            return ProductResource::make($service->createProduct($request->toArray()));
         } catch ( \Exception $exception) {
             return $this->sendErrorResponse($exception);
         }
@@ -61,18 +61,15 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Product $product
-     * @return AnonymousResourceCollection|JsonResponse
+     * @param UpdateProductRequest $request
+     * @param int $productId
+     * @return ProductResource|JsonResponse
      */
-    public function update(Request $request, Product $product): AnonymousResourceCollection | JsonResponse
+    public function update(UpdateProductRequest $request, int $productId): ProductResource | JsonResponse
     {
         try {
-            $product->fill($request->post())->save();
-            return response()->json([
-                'message'=>'Product Updated Successfully!!',
-                'product'=>$product
-            ]);
+            $service = new ProductService();
+            return ProductResource::make($service->editProduct($request->toArray(), $productId));
         } catch ( \Exception $exception) {
             return $this->sendErrorResponse($exception);
         }
@@ -81,16 +78,14 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Product $product
-     * @return AnonymousResourceCollection|JsonResponse
+     * @param int $productId
+     * @return ProductResource|JsonResponse
      */
-    public function destroy(Product $product): AnonymousResourceCollection | JsonResponse
+    public function destroy(int $productId): ProductResource | JsonResponse
     {
         try {
-            $product->delete();
-            return response()->json([
-                'message'=>'Product Deleted Successfully!!'
-            ]);
+            $service = new ProductService();
+            return ProductResource::make($service->deleteProduct($productId));
         } catch ( \Exception $exception) {
             return $this->sendErrorResponse($exception);
         }

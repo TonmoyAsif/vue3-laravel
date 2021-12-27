@@ -1,7 +1,7 @@
 import Layout from "@scripts/layouts/App.vue";
-import ProductList from "@scripts/pages/List.vue";
-import ProductCreate from "@scripts/pages/Add.vue";
-import ProductEdit from "@scripts/pages/Edit.vue";
+import ProductListPage from "@scripts/pages/ListPage.vue";
+import ProductAddPage from "@scripts/pages/AddPage.vue";
+import ProductEditPage from "@scripts/pages/EditPage.vue";
 
 export const routes = [
     {
@@ -11,18 +11,18 @@ export const routes = [
             {
                 path: "/",
                 name: "productList",
-                component: ProductList,
+                component: ProductListPage,
             },
             {
                 path: "/product/:productId/edit",
                 name: "productEdit",
                 props: true,
-                component: ProductEdit,
+                component: ProductEditPage,
             },
             {
                 path: "/product/add",
                 name: "productAdd",
-                component: ProductCreate,
+                component: ProductAddPage,
             },
         ],
     },
