@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@vue/compiler-sfc": "^3.2.6",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
@@ -17,12 +18,12 @@
         "resolve-url-loader": "4.0.0",
         "sass": "^1.43.4",
         "sass-loader": "12.1.0",
-        "vue-loader": "15.9.8",
-        "vue-template-compiler": "^2.6.14"
+        "vue-loader": "17.0.0"
     },
     "dependencies": {
-        "vue": "^2.6.14",
+        "@vue/compat": "^3.2.6",
+        "vue": "^3.2.6",
         "vue-axios": "^3.4.0",
-        "vue-router": "^3.5.3"
+        "vue-router": "^4.0.11"
     }
 }
